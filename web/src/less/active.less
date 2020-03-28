@@ -1,0 +1,129 @@
+/**
+ * This file is part of MolView (http://molview.org)
+ * Copyright (c) 2014, 2015 Herman Bergwerf
+ *
+ * MolView is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * MolView is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with MolView.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+@import (reference) "form";
+@import (reference) "autocomplete";
+
+/*
+form
+*/
+.input-wrapper > button:active
+{
+	color: @active;
+}
+
+.btn:active
+{
+	.form-box-active;
+}
+
+.close-btn:active, .dialog-close-btn:active
+{
+	color: #f00;
+}
+
+/*
+menu
+*/
+.dropdown-toggle:not(.tool-button-disabled):active
+{
+	background-color: @light !important;
+	border-color: @contrast !important;
+}
+
+.menu-item > a:not(.disabled):active
+{
+	background-color: @light3;
+}
+
+#layout-menu > a:active
+{
+	opacity: 1.0;
+	background-color: @light3;
+}
+
+/*
+sketcher
+*/
+.tool-button:not(.tool-button-disabled):active
+{
+	background-color: @highlight-light;
+}
+
+#chem-tools > .toolbar-inner > .tool-button:not(.tool-button-disabled):active
+{
+	border-right: 3px solid @highlight;
+	width: 37px;
+}
+
+#elem-tools > .toolbar-inner > .tool-button:not(.tool-button-disabled):active
+{
+	border-left: 3px solid @highlight;
+	width: 37px;
+}
+
+#edit-tools > .toolbar-inner > .tool-button:not(.tool-button-disabled):active
+{
+	border-bottom: 3px solid @highlight;
+	height: 37px;
+}
+
+/* periodictable */
+.pt-element:active
+{
+	background-color: @highlight-light;
+	border-color: @highlight;
+}
+
+/*
+help
+*/
+.expandable-title:active
+{
+	background: @contrast;
+}
+
+/*
+search
+*/
+.search-result-title:active, .search-result-pubchem:active > .search-result-title, .load-more:active
+{
+	background: @light2;
+}
+
+.load-more:active
+{
+	border-color: @contrast;
+}
+
+
+/*
+autocomplete
+*/
+.autocomplete-item:active
+{
+	.autocomplete-item-active;
+}
+
+/*
+messages
+*/
+.message-close-btn:active
+{
+	background: rgba(0, 0, 0, 0.5);
+}

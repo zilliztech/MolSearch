@@ -1,0 +1,159 @@
+/**
+ * This file is part of MolView (http://molview.org)
+ * Copyright (c) 2014, 2015 Herman Bergwerf
+ *
+ * MolView is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * MolView is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with MolView.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+@import (reference) "vars";
+
+.data-layer
+{
+	margin: 0;
+	padding: 10px;
+	background: @light;
+	overflow: auto;
+}
+
+#infocard-layer
+{
+	padding-bottom: 100px;
+	text-align: center;
+}
+
+#properties-wrapper
+{
+	display: inline-block;
+	max-width: 600px;
+	width: 100%;
+}
+
+#general-properties
+{
+	text-align: center;
+	font-size: 0;
+}
+
+#properties-wrapper > div:last-child
+{
+	margin-bottom: 100px;
+}
+
+.properties-block
+{
+	position: relative;
+	display: block;
+	margin: 0;
+	font-size: medium;
+	font-size: initial;
+	text-align: left;
+	width: 100%;
+}
+
+.properties-block table
+{
+	width: 100%;
+}
+
+@media all and (min-width: 1200px)
+{
+	#properties-wrapper
+	{
+		margin: 0;
+		width: auto;
+		max-width: 1100px;
+	}
+
+	#general-properties
+	{
+		margin: -10px;
+		padding-bottom: 10px;
+
+		/* in order to fit the image and primary table
+		together ([space] between blocks = 0) */
+		font-size: 0;
+	}
+
+	.properties-block
+	{
+		display: inline-block;
+		margin: 10px;
+		width: 539px;
+		vertical-align: middle;
+	}
+}
+
+@media all and (min-width: 1300px)
+{
+	#properties-wrapper
+	{
+		max-width: 1200px;
+	}
+
+	.properties-block
+	{
+		width: 589px;
+	}
+}
+
+#molecule-image
+{
+	margin: 0 auto;
+}
+
+#molecule-info
+{
+	padding: 15px 10px;
+}
+
+#molecule-title
+{
+	margin: 0;
+}
+
+#spectrum-wrapper
+{
+	overflow: auto;
+}
+
+/*
+Chemprops
+*/
+
+.chemprop-loading
+{
+	cursor: progress;
+	background-image: url(../img/misc/spinner.svg);
+	background-size: 24px;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.chem-identifier
+{
+	text-align: left;
+}
+
+.chem-identifier > label
+{
+	display: inline-block;
+	margin-top: 10px;
+	padding: 5px;
+	font-weight: bold;
+}
+
+.chem-link
+{
+	padding: 0 5px;
+}

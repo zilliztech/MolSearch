@@ -1,0 +1,190 @@
+/**
+ * This file is part of MolView (http://molview.org)
+ * Copyright (c) 2014, 2015 Herman Bergwerf
+ *
+ * MolView is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * MolView is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with MolView.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+@import (reference) "vars";
+
+#search-layer
+{
+	margin: 0;
+	text-align: center;
+	background: @pubchem-pngbg;
+	overflow: auto;
+}
+
+#search-layer > .container
+{
+	font-size: 0;
+	padding: 0 20px;
+}
+
+.load-more
+{
+	cursor: pointer;
+	margin: 10px;
+	padding: 10px;
+	font-size: 20pt;
+	border: 1px solid @pubchem-pngbg;
+}
+
+.load-more:before
+{
+	content: "Load more";
+}
+
+.load-more-progress
+{
+	cursor: default !important;
+	background: @pubchem-pngbg !important;
+	border-color: @pubchem-pngbg !important;
+	box-shadow: none !important;
+}
+
+.load-more-progress:before
+{
+	content: "Loading...";
+}
+
+/*
+Search output:
+<div class="result">
+	<div class="title"><span>Name</span></h2>
+	<div class="img" style="background-image: url(image.png)"/>
+</div>
+*/
+
+.search-result
+{
+	position: relative;
+	display: inline-block;
+	margin: 20px 0;
+	width: 100%;
+	vertical-align: top;
+
+	font-size: medium;
+	font-size: initial;
+	text-decoration: none;
+	color: @foreground;
+	background: @light;
+
+	border-radius: 5px;
+	overflow: hidden;
+	box-shadow: 0 3px 7px rgba(0, 0, 0, 0.4);
+}
+
+.search-result-pubchem
+{
+	cursor: pointer;
+}
+
+.search-result-codid
+{
+	line-height: 20px;
+	color: @foreground-light;
+	margin-bottom: 5px;
+}
+
+.search-result-title
+{
+	cursor: pointer;
+	display: block;
+	height: 30px;
+	line-height: 30px;
+	padding: 10px 20px;
+
+	text-align: center;
+	text-decoration: none;
+	text-overflow: ellipsis;
+
+	color: @foreground;
+	overflow: hidden;
+}
+
+.search-result-title > span
+{
+	white-space: nowrap;
+	text-decoration: none;
+}
+
+.search-result-description
+{
+	padding: 20px;
+	font-size: 11pt;
+
+	word-wrap: break-word;
+	text-align: left;
+
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+
+.search-result-description > .expandable
+{
+	margin: 0;
+}
+
+.search-result-description > .expandable > .expandable-title
+{
+	border-width: 1px 0 1px 0;
+}
+
+.search-result-description > p
+{
+	margin: 10px;
+}
+
+.search-result-description-cod
+{
+	padding: 0;
+	background: @light;
+}
+
+.search-result-img-wrap
+{
+	font-size: 0;
+	text-align: center;
+	background-image: url(../img/misc/spinner.svg);
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.search-result-img
+{
+	display: inline-block;
+	width: 300px;
+	height: 300px;
+	max-width: 100%;
+
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: contain;
+
+}
+
+@media all and (min-width: 420px)
+{
+	#search-layer
+	{
+		padding: 20px 20px 0 20px;
+	}
+
+	.search-result
+	{
+		width: 300px;
+		margin: 20px;
+	}
+}

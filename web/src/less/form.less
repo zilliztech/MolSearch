@@ -1,0 +1,271 @@
+/**
+ * This file is part of MolView (http://molview.org)
+ * Copyright (c) 2014, 2015 Herman Bergwerf
+ *
+ * MolView is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * MolView is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with MolView.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+@import (reference) "vars";
+@import (reference) "global";
+
+.form-box
+{
+	margin-bottom: 1px;/* to fill :hover border-bottom-width */
+
+	color: @foreground;
+	font-size: 12px;
+	font-family: 'Open Sans', sans-serif;
+	text-decoration: none;
+	background: transparent;
+	border: 0;
+	// border-bottom: 2px solid @foreground-less;
+
+	&:focus
+	{
+		outline: none;
+		border-color: @highlight !important;
+	}
+}
+
+.form-box-hover
+{
+	margin-bottom: 0;
+	border-width: 3px;
+	border-color: @foreground-less;
+
+	background: @light2;
+}
+
+.form-box-active
+{
+	margin-bottom: 0;
+	border-width: 3px;
+
+	background: @highlight-light;
+	border-color: @highlight !important;
+}
+
+/* input */
+.input-wrapper
+{
+	position: relative;
+	height: 40px;
+	font-size: 0 !important;
+	white-space: nowrap;
+}
+
+.input-wrapper > input, .input-wrapper > button
+{
+	display: inline-block;
+	padding: 0;
+	margin: 0;
+	min-width: 40px;
+	height: 40px;
+
+	vertical-align: top;
+	font-size: normal;
+	font-size: initial;
+
+	border: 0;
+}
+
+.input-wrapper > button:focus
+{
+	outline: none;
+}
+
+.input-focus
+{
+	display: block;
+	position: absolute;
+	top: 35px;
+	right: 5px;
+	left: 5px;
+	height: 1px;
+
+	background: @contrast;
+}
+
+input[type="text"]
+{
+	cursor: text;
+	margin: 0;
+
+	-webkit-box-sizing: border-box;
+	   -moz-box-sizing: border-box;
+	        box-sizing: border-box;
+
+	font-family: monospace;
+}
+
+input:focus
+{
+	outline: none;
+}
+
+input[type="text"]:focus + .input-focus
+{
+	background: @highlight !important;
+	height: 2px;
+}
+
+input[type="text"].alert + .input-focus
+{
+	background: @error !important;
+}
+
+.input
+{
+	width: 100%;
+	height: 30px;
+	padding: 8px 10px 5px 10px;
+	background: transparent;
+	border: 0;
+	border-bottom: 1px solid @foreground-light;
+}
+
+.input:focus
+{
+	border-bottom: 2px solid @highlight !important;
+
+	//border compensation trick
+	height: 31px;
+	margin-bottom: -1px;
+}
+
+/* select */
+select
+{
+	cursor: pointer;
+	margin-top: 10px;
+	margin-left: 10px;
+	padding: 5px;
+	max-width: 300px;
+
+	color: @foreground;
+	font-size: 12pt;
+	font-family: 'Open Sans', sans-serif;
+	text-decoration: none;
+}
+
+select:focus
+{
+	outline: none;
+}
+
+option
+{
+	background: @light;
+}
+
+/* checkbox */
+input[type="checkbox"]
+{
+	cursor: pointer;
+	margin-bottom: 8px;
+	vertical-align: middle;
+	width: 18px;
+	height: 18px;
+}
+
+/* button */
+button, input[type="submit"]
+{
+	cursor: pointer;
+	display: inline-block;
+}
+
+.btn
+{
+	.form-box;
+
+	display: inline-block;
+	margin-top: 10px;
+	margin-left: 10px;
+	padding: 5px 15px;
+}
+
+.btn-large
+{
+	padding: 10px 20px;
+	font-size: 18pt;
+}
+
+.close-btn
+{
+	cursor: pointer;
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 10px;
+
+	line-height: 1;
+	font-size: 32pt;
+	color: #eee;
+}
+
+.close-btn:after
+{
+	content: '\00D7';
+}
+
+.btn-group
+{
+	display: block;
+	padding-bottom: 10px;
+}
+
+.btn-group-bar
+{
+	display: block;
+	padding-bottom: 10px;
+	text-align: left;
+}
+
+/* table styling */
+table
+{
+	position: relative;
+	color: #111;
+	border-collapse: collapse;
+}
+
+td, th
+{
+	padding: 5px 20px 5px 5px;
+	min-width: 32px;
+	border: 1px solid @contrast;
+}
+
+td
+{
+	background-color: @light2;
+}
+
+tr:nth-child(even) > td
+{
+	background-color: @light3;
+}
+
+th
+{
+	background: @light;
+	font-weight: bold;
+	text-align: center;
+}
+
+td:first-child
+{
+	font-weight: bold;
+}
