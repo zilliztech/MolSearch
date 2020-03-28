@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg id="svg3967" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" height="40" width="40" version="1.1" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/">
+ <metadata id="metadata3972">
+  <rdf:RDF>
+   <cc:Work rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:title/>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <g id="layer1" transform="matrix(1.4285714,0,0,1.4285715,-8.5714276,-1454.8033)" stroke="#000" stroke-linecap="butt" stroke-dasharray="none" stroke-miterlimit="4" stroke-width="4" fill="none">
+  <path id="path5228" stroke-linejoin="miter" d="m20,0,0,6.9999" transform="matrix(0.70000001,0,0,0.69999997,5.9999994,1018.3623)"/>
+  <path id="path5230" stroke-linejoin="round" d="m0,20,7-0.000059" transform="matrix(0.70000001,0,0,0.69999997,5.9999994,1018.3623)"/>
+  <path id="path5232" stroke-linejoin="miter" d="M33,20a13,13,0,1,1,-26,0,13,13,0,1,1,26,0z" transform="matrix(0.70000001,0,0,0.69999997,5.9999994,1018.3623)"/>
+  <path id="path5255" stroke-linejoin="miter" d="m20,40,0-7" transform="matrix(0.70000001,0,0,0.69999997,5.9999994,1018.3623)"/>
+  <path id="path5257" stroke-linejoin="miter" d="m40,20-7,0" transform="matrix(0.70000001,0,0,0.69999997,5.9999994,1018.3623)"/>
+ </g>
+</svg>

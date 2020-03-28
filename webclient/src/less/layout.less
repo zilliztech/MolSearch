@@ -1,0 +1,159 @@
+/**
+ * This file is part of MolView (http://molview.org)
+ * Copyright (c) 2014, 2015 Herman Bergwerf
+ *
+ * MolView is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * MolView is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with MolView.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+@import (reference) "vars";
+@import (reference) "global";
+
+html
+{
+	overflow: hidden;
+}
+
+body
+{
+	position: absolute;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+
+	color: @foreground;
+	font-family: 'Open Sans', sans-serif;
+	background: @light;
+	overflow: hidden;
+}
+
+#progress
+{
+	z-index: 2;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 3px;
+}
+
+#progress-canvas
+{
+	position: absolute;
+}
+
+#menu
+{
+	z-index: 1;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: @menubar-height;
+}
+
+.no-menu > #menu
+{
+	display: none;
+}
+
+.no-menu > #progress
+{
+	top: 0;
+}
+
+.no-menu > #content
+{
+	top: 0;
+}
+
+#content
+{
+	position: absolute;
+	top: @menubar-height + 1;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+
+.layer
+{
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+
+#sketcher
+{
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 50%;
+	bottom: 0;
+	background: #eee;
+}
+
+.layout-sketcher > #sketcher, .layout-hsplit > #sketcher
+{ right: 0; }
+
+.layout-hsplit > #sketcher
+{ bottom: 50%; }
+
+.layout-model > #sketcher
+{ visibility: hidden; }
+
+#model
+{
+	position: absolute;
+	top: 0;
+	left: 50%;
+	right: 0;
+	bottom: 0;
+	background: #000;
+	overflow: hidden;
+}
+
+.layout-model > #model, .layout-hsplit > #model
+{ left: 0; }
+
+.layout-hsplit > #model
+{ top: 50%; }
+
+.layout-sketcher > #model
+{ visibility: hidden; }
+
+#messages
+{
+	z-index: 3;
+}
+
+#dialog-overlay
+{
+	z-index: 4;
+}
+
+#about-links
+{
+	margin-top: 50px;
+	text-align: center;
+	line-height: 2;
+	color: @foreground-light;
+}
+
+#share-dialog-social
+{
+	margin: 5px 0 5px -5px;
+}

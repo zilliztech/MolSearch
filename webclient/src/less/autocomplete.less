@@ -1,0 +1,84 @@
+/**
+ * This file is part of MolView (http://molview.org)
+ * Copyright (c) 2014, 2015 Herman Bergwerf
+ *
+ * MolView is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * MolView is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with MolView.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+@import (reference) "vars";
+
+#autocomplete-dropdown-wrapper
+{
+	position: absolute;
+	top: @menubar-height + 1;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+
+#autocomplete-dropdown
+{
+	z-index: 1;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	max-width: 600px;
+	max-height: 100%;
+
+	overflow: auto;
+	overflow-x: hidden;
+	direction: rtl;
+}
+
+#autocomplete-dropdown > ul
+{
+	margin: 0;
+	padding: 0;
+	direction: ltr;
+}
+
+.autocomplete-item
+{
+	cursor: pointer;
+	list-style: none;
+	margin: 0;
+	padding: 5px 10px;
+
+	color: #111;
+}
+
+.autocomplete-pubchem { color: #3c763d; background: #dff0d8; border-right: 2px solid #0a0; }
+.autocomplete-macromolecule { color: #a94442; background: #f2dede; border-right: 2px solid #f10; }
+.autocomplete-mineral { color: #31708f; background: #d9edf7; border-right: 2px solid #07f; }
+
+.autocomplete-item-hover
+{
+	border-width: 3px;
+}
+
+.autocomplete-item-active
+{
+	color: @foreground;
+	background: @highlight-light;
+	border-color: @highlight !important;
+	border-width: 3px;
+}
+
+.autocomplete-type
+{
+	float: right;
+	margin: 0 10px;
+	font-style: italic;
+}

@@ -1,0 +1,120 @@
+/**
+ * This file is part of MolView (http://molview.org)
+ * Copyright (c) 2014, 2015 Herman Bergwerf
+ *
+ * MolView is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * MolView is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with MolView.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+@import (reference) "vars";
+
+body
+{
+	margin: 0;
+	padding: 10px;
+
+	color: @foreground;
+	font-family: 'Open Sans', sans-serif;
+	background: @light;
+}
+
+pre
+{
+    padding: 10px;
+    white-space: pre-wrap;
+    background: @light2;
+    border: 1px solid @contrast;
+}
+
+hr
+{
+	border: 0;
+	border-bottom: 1px solid @light2;
+}
+
+a
+{
+	color: #06c;
+	cursor: pointer;
+}
+
+a:visited
+{
+	color: #06c;
+}
+
+a:hover
+{
+	color: @highlight;
+	text-decoration: underline;
+}
+
+a:active
+{
+	color: @active;
+}
+
+#return-to-molview
+{
+	display: inline-block;
+	color: @foreground;
+	text-decoration: none;
+}
+
+#header
+{
+	padding-bottom: 10px;
+	border-bottom: 1px solid @light2;
+	font-size: 0;//remove inline-block spacing
+}
+
+#logo
+{
+	height: 40px;
+}
+
+#mark
+{
+	height: 40px;
+	display: block;
+	margin-left: 5px;
+	vertical-align: top;
+}
+
+@media all and (min-width: 700px)
+{
+	#logo
+	{
+		height: 60px;
+	}
+
+	#mark
+	{
+		height: 60px;
+		margin-left: 10px;
+	}
+}
+
+#content
+{
+	margin: 0 auto;
+	max-width: 700px;
+	word-wrap: break-word;
+}
+
+#footer
+{
+    padding: 20px 10px;
+	text-align: center;
+	color: @foreground-light;
+}

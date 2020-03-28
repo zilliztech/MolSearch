@@ -1,0 +1,38 @@
+Options +FollowSymlinks
+RewriteEngine on
+
+ErrorDocument 400 /page.php?id=400
+ErrorDocument 401 /page.php?id=401
+ErrorDocument 403 /page.php?id=403
+ErrorDocument 404 /page.php?id=404
+ErrorDocument 500 /page.php?id=500
+
+# HTTPS redirection
+# RewriteCond %{HTTP:CF-Visitor} '"scheme":"http"'
+# RewriteRule ^(.*)$ http://molview.org/$1 [R,L]
+
+# WWW redirection
+RewriteCond %{HTTP_HOST} ^www.molview.org$ [NC]
+RewriteRule ^(.*)$ http://molview.org/$1 [L,R=301]
+
+# PHP APIs
+RewriteRule ^api\/cod\/cif\/([^.]*) php/cif.php?codid=$1 [L]
+RewriteRule ^api\/cod\/([a-z]*)\/(.*) php/cod.php?action=$1&q=$2 [L]
+
+RewriteRule ^api\/nist\/lookup\/(.*) php/nist.php?type=lookup&cas=$1 [L]
+RewriteRule ^api\/nist\/ir\/([^/]*)\/(.*) php/nist.php?type=ir&cas=$1&i=$2 [L]
+RewriteRule ^api\/nist\/mass\/(.*) php/nist.php?type=mass&cas=$1 [L]
+RewriteRule ^api\/nist\/uvvis\/(.*) php/nist.php?type=uvvis&cas=$1 [L]
+
+RewriteRule ^api\/image\/([a-z]*)\/([^.]*) php/image.php?dbid=$1&i=$2 [L]
+
+RewriteRule ^api\/gplus$ php/gplus.php$1 [L]
+
+# Markdown pages
+RewriteRule ^readme$ page.php?id=readme [L]
+RewriteRule ^changelog$ page.php?id=changelog [L]
+RewriteRule ^license$ page.php?id=license [L]
+RewriteRule ^legal$ page.php?id=legal [L]
+RewriteRule ^internetExplorer$ page.php?id=iesupport [L]
+RewriteRule ^htmlCanvas$ page.php?id=htmlcanvas [L]
+RewriteRule ^tracking$ page.php?id=tracking [L]

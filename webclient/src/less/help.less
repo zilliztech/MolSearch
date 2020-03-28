@@ -1,0 +1,72 @@
+/**
+ * This file is part of MolView (http://molview.org)
+ * Copyright (c) 2014, 2015 Herman Bergwerf
+ *
+ * MolView is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * MolView is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with MolView.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+@import (reference) "form";
+@import (reference) "global";
+
+.expandable
+{
+	margin: 10px 0;
+}
+
+.expandable-title
+{
+	cursor: pointer;
+	position: relative;
+	padding: 7px 15px;
+	padding-left: 45px;
+
+	font-size: 12pt;
+	font-weight: bold;
+	border: 1px solid @contrast;
+
+	.no-select;
+}
+
+.expandable-title:before
+{
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	padding: 0 12px;
+
+	line-height: 38px;
+	font-size: 14pt;
+	font-family: FontAwesome;
+	border-right: 1px solid @contrast;
+
+	content: '\f107';
+}
+
+.expandable.open > .expandable-title:before
+{
+	content: '\f106';
+}
+
+.expandable-content
+{
+	display: none;
+	padding: 10px 10px;
+}
+
+.expandable.open > .expandable-content
+{
+	display: block;
+}

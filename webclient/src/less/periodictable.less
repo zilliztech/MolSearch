@@ -1,0 +1,91 @@
+/**
+ * This file is part of MolView (http://molview.org)
+ * Copyright (c) 2014, 2015 Herman Bergwerf
+ *
+ * MolView is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * MolView is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with MolView.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+@import (reference) "global";
+
+#periodictable
+{
+	position: relative;
+	margin-bottom: 20px;
+
+	.no-select;
+}
+
+#periodictable br
+{
+	clear: both;
+}
+
+.pt-space, .pt-element
+{
+	float: left;
+}
+
+.pt-element
+{
+	cursor: pointer;
+	text-align: center;
+	overflow: hidden;
+}
+
+.pt-space, .pt-element
+{
+	width: 30px;
+	height: 30px;
+}
+
+.pt-element > h3
+{
+	display: none;
+	margin: 0;
+	margin-top: 5px;
+	font-size: 6pt;
+}
+
+.pt-element > h4
+{
+	display: block;
+	margin: 0;
+	font-size: 9pt;
+	line-height: 30px;
+}
+
+@media all and (min-width: 1000px)
+{
+	.pt-space, .pt-element
+	{
+		width: 50px;
+		height: 50px;
+	}
+
+	.pt-element > h3
+	{
+		display: block;
+		margin: 0;
+		margin-top: 5px;
+		font-size: 6pt;
+	}
+
+	.pt-element > h4
+	{
+		display: block;
+		margin: 0;
+		font-size: 14pt;
+		line-height: 20pt;
+	}
+}
