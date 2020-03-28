@@ -15,12 +15,15 @@ RUN mkdir -p /tmp/result-mols
 RUN mkdir -p /mnt/pgdata
 
 RUN adduser zilliz
-RUN su zilliz
+RUN yum install -y wget
+RUN wget -O /usr/local/bin/gosu "https://github.com/tianon/gosu/releases/download/1.7/gosu-amd64" \
+    && chmod +x /usr/local/bin/gosu \
+    && gosu zilliz true
 RUN initdb -D /mnt/pgdata
 RUN cd /mnt/pgdata
 RUN pg_ctl -D /mnt/pgdata -l rdclog start
 
-RUN exit
+USER root
 
 RUN cd /app
 CMD python src/app.py
