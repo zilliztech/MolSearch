@@ -1,17 +1,10 @@
 import logging
 from common.const import default_cache_dir
-from common.config import PG_TABLE
+from common.config import PG_HOST, PG_PORT, PG_USER, PG_PASSWORD, PG_DATABASE, PG_TABLE
 from indexer.index import milvus_client, create_table, insert_vectors, delete_table, search_vectors, create_index
 from diskcache import Cache
 from encoder.encode import smiles_to_vec
 import psycopg2
-
-
-PG_HOST = "localhost"
-PG_PORT = 5432
-PG_USER = "zilliz"
-PG_PASSWORD = "zilliz"
-PG_DATABASE = "milvus"
 
 
 def connect_postgres_server():
