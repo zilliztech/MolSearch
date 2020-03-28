@@ -1,9 +1,0 @@
-flask-cors
-numpy==1.16.5
-diskcache
-flask
-flask_restful
-futures==3.1.1
-pymilvus
-PubChemPy
-psycopg2-binary
