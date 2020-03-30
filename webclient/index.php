@@ -612,11 +612,12 @@ Query parameters:
 						?>
 						<!-- <p>Download PDF: <a class="link" href="docs/manual.pdf" target="_blank">docs/manual.pdf</a></p>
 						<p>Click one of the subjects below to learn more. You can also watch some videos on <a class="link" target="_blank" title="YouTube Channel" href="https://www.youtube.com/channel/UCRP9nXCC59TMlqc-bk1mi3A">YouTube</a> to get started.</p> -->
+						<h3>Version</h3>
+						<h4>MolSearch 0.1.0</h4>
 						<h3>Subjects</h3>
 						<div class="expandable">
 							<div class="expandable-title"><span>Drawing structural formulas</span></div>
 							<div class="expandable-content">
-								<p>MolView consists of two main parts, a structural formula editor and a 3D model viewer. The structural formula editor is surround by three toolbars which contain the tools you can use in the editor. Once you’ve drawn a molecule, you can click the 2D to 3D button to convert the molecule into a 3D model which is then displayed in the viewer. Below is a list of all sketch tools.</p>
 								<h4>Top toolbar</h4>
 								<p style="margin-top: 10px;"><img style="display: inline-block; max-height: 40px;" src="img/help/SketcherTopToolbar.jpg" alt="Top toolbar" /></p>
 								<ul>
@@ -632,10 +633,10 @@ Query parameters:
 										</ul>
 									</li>
 									<li><b>Color mode:</b> display atoms and bonds using colors</li>
-									<li><b>Full mode:</b> displays all C and H atoms instead of skeletal display</li>
+									<li><b>skeleton mode:</b> displays all C and H atoms instead of skeletal display</li>
 									<li><b>Center:</b> centers the whole molecule</li>
 									<li><b>Clean:</b> cleans the structural formula using an external service</li>
-									<li><b>2D to 3D:</b> converts the structural formula into a 3D model</li>
+									<li><b>to 3D:</b> converts the structural formula into a 3D model</li>
 								</ul>
 								<h4>Left toolbar</h4>
 								<p style="margin-top: 10px;"><img style="max-height: 40px; display: inline-block;" src="img/help/SketcherLeftToolbar.jpg" alt="Left toolbar" /></p>
@@ -654,38 +655,13 @@ Query parameters:
 							<div class="expandable-title"><span>Finding structures</span></div>
 							<div class="expandable-content">
 								<p><img style="max-height: 40px; display: inline-block;" src="img/help/SearchBar.jpg" alt="Search bar" /></p>
-								<p>You can load molecules from large databases like PubChem and RCSB using the search form located on the left side of the menu-bar. Just type what you are looking for and a list of available molecules will appear.</p>
-								<p>You can also click on the dropdown button next to the search field to select a specific database. This will perform a more extensive search on the selected database. Currently, three big databases are supported:</p>
-								<ol>
-									<li><b>PubChem</b></li>
-									<li><b>The RCSB Protein Data Bank</b></li>
-									<li><b>The Crystallography Open Database</b></li>
-								</ol>
+								<p>You can load molecules, just type what you are looking for and a list of available molecules will appear.</p>
 							</div>
 						</div>
 						<div class="expandable">
-							<div class="expandable-title"><span>Tools</span></div>
+							<div class="expandable-title"><span>Search</span></div>
 							<div class="expandable-content">
-								<p>The <b>Tools</b> menu contains several utility functions which are listed below.</p>
-								<h4>Link</h4>
-								<p>You can embed or share a specific compound, macromolecule or crystal using the provided URL or HTML code. Note that the linked structure is the one which is currently displayed in the model window. You can also copy the URL from the address bar in order to link to the current structure.</p>
-								<h4>Export</h4>
-								<p>Export options:</p>
-								<ul>
-									<li><b>Structural formula image:</b> sketcher snapshot (PNG with alpha channel)</li>
-									<li><b>3D model image:</b> model snapshot (PNG,  alpha channel in Glmol and ChemDoodle)</li>
-									<li><b>MOL file:</b> exports a MDL Molfile from the 3D model <b>(common molecules)</b></li>
-									<li><b>PDB file:</b> exports a Protein Data Bank file from the 3D model <b>(macromolecules)</b></li>
-									<li><b>CIF file:</b> exports a Crystallographic Information File from the 3D model <b>(crystal structures)</b></li>
-								</ul>
-								<h4>Information card</h4>
-								<p>This collects and displays information about the structural formula.</p>
-								<h4>Spectroscopy</h4>
-								<p>This shows a new layer where you can view molecular analysis software spectra of the current structural formula (loaded from the Sketcher) More details are covered in the Spectroscopy chapter.</p>
-								<h4>3D model resource</h4>
-								<p>This redirects you to the web-page for the current 3D model on the website of its source database (except when the model is resolved using the Chemical Identifier Resolver)</p>
-								<h4>Advanced search</h4>
-								<p>These functions allow you to perform some advanced searches through the PubChem database using the structural formula from the sketcher.</p>
+								<p>These functions allow you to perform some advanced searches through the database using the structural formula from the sketcher.</p>
 								<ol>
 									<li><b>Similarity search:</b> search for compounds with a similar structural formula</li>
 									<li><b>Substructure search:</b> search for compounds with the current structure as subset</li>
@@ -694,22 +670,19 @@ Query parameters:
 							</div>
 						</div>
 						<div class="expandable">
-							<div class="expandable-title"><span>Spectroscopy</span></div>
+							<div class="expandable-title"><span>Tools</span></div>
 							<div class="expandable-content">
-								<p>You can open the Spectroscopy view via <b>Tools > Spectroscopy</b>. You can view three kinds of molecular analysis software spectra.</p>
-								<ol>
-									<li>Mass spectrum</li>
-									<li>IR spectrum</li>
-									<li>H1-NMR prediction</li>
-								</ol>
-								<h4>Export data</h4>
-								<p>You can also export different kinds of data from the currently selected spectrum.</p>
+								<p>The <b>Tools</b> menu contains several utility functions which are listed below.</p>
 								<ul>
-									<li><b>PNG image:</b> snapshot from interactive spectrum</li>
-									<li><b>JCAMP file:</b> JCAMP-DX file of the current spectrum</li>
+									<li><b>Structural formula image:</b> sketcher snapshot (PNG with alpha channel)</li>
+									<li><b>3D model image:</b> model snapshot (PNG)</li>
+									<li><b>MOL file:</b> exports a MDL Molfile from the 3D model <b>(common molecules)</b></li>
 								</ul>
+								<h4>Information card</h4>
+								<p>This collects and displays information about the structural formula.</p>
 							</div>
 						</div>
+						
 						<div class="expandable">
 							<div class="expandable-title"><span>3D model</span></div>
 							<div class="expandable-content">
@@ -722,23 +695,11 @@ Query parameters:
 								<p>You can switch between a black, gray or white background. The default background is black (exported images from GLmol or ChemDoodle have a transparent background)</p>
 								<h4>Engines</h4>
 								<p>You can choose from three different render engines: <b>GLmol</b>, <b>Jmol</b> and <b>ChemDoodle</b>. GLmol is used as default render engine. GLmol and ChemDoodle are based on WebGL, a browser technology to support 3D graphics. If WebGL is not available in your browser, Jmol will be used for all rendering.</p>
-								<p>MolView automatically switches to:</p>
+								<p>MolSearch automatically switches to:</p>
 								<ol>
 									<li><b>Jmol</b> if you execute functions from the Jmol menu</li>
 									<li><b>GLmol</b> if you load macromolecules (due to significant higher performance)</li>
 									<li><b>ChemDoodle</b> if you load a crystal structure (GLmol cannot render crystal structures)</li>
-								</ol>
-								<p>You might want to switch back to GLmol when you do no longer need Jmol or ChemDoodle since GLmol has a better performance.</p>
-								<p>Note that macromolecules are drawn slightly different in each engine. ChemDoodle provides the finest display. You should, however, avoid using ChemDoodle for very large macromolecules.</p>
-								<h4>Model transformation</h4>
-								<p>You can rotate, pan and zoom the 3D model. Use the right button for rotation, the middle button for translation (except for ChemDoodle) and the scrollwheel for zooming. On touch devices, you can rotate the model with one finger and scale the model using two fingers.</p>
-								<h4>Crystallography</h4>
-								<p>You can load an array of crystal cells (2x2x2 or 1x3x3) or a single unit cell when viewing crystal structures.</p>
-								<h4>Fog and clipping</h4>
-								<p>When you are viewing large structures, like proteins, it can be useful to hide a certain part using fog or a clipping plane. GLmol offers a few options to do this.</p>
-								<ol>
-									<li><b>Fog:</b> you can move the fog forward by dragging the mouse <b>up</b> while holding <b>CTRL + SHIFT</b> (drag in the opposite direction to move the fog backward)</li>
-									<li><b>Clipping plane:</b> you can move a frontal clipping plane into the structure by dragging the mouse to the <b>left</b> while holding <b>CTRL + SHIFT</b> (drag in the opposite direction to move the clipping plane back)</li>
 								</ol>
 							</div>
 						</div>
