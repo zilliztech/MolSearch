@@ -300,7 +300,8 @@ Query parameters:
 							<li class="menu-item"><a id="action-jmol-measure-torsion" class="jmol-script jmol-picking radio">Torsion</a></li>
 						</ul>
 					</li>
-					<li style="font-weight: bold; position:absolute; right: 20px"><a id="action-help">?</a></li>
+					<li class="dropdown"><a id="action-help" style="padding: 10px 15px;height: 20px;line-height: 20px;z-index: 1;
+    display: block;">Help</a></li>
 				</ul>
 			</div>
 		</div>
@@ -309,7 +310,6 @@ Query parameters:
 				<!-- Dynamic onload layout -->
 				<script type="text/javascript">
 					MolView.query = getQuery();
-
 					if(localStorage && localStorage["molview.theme"])
 					{
 						MolView.setTheme(localStorage["molview.theme"]);
@@ -612,9 +612,8 @@ Query parameters:
 						?>
 						<!-- <p>Download PDF: <a class="link" href="docs/manual.pdf" target="_blank">docs/manual.pdf</a></p>
 						<p>Click one of the subjects below to learn more. You can also watch some videos on <a class="link" target="_blank" title="YouTube Channel" href="https://www.youtube.com/channel/UCRP9nXCC59TMlqc-bk1mi3A">YouTube</a> to get started.</p> -->
-						<h3>Version</h3>
-						<h4>MolSearch 0.1.0</h4>
-						<h3>Subjects</h3>
+						<h3>MolSearch Version 0.1.0</h3>
+                                                <h3>Subjects</h3>
 						<div class="expandable">
 							<div class="expandable-title"><span>Drawing structural formulas</span></div>
 							<div class="expandable-content">
@@ -821,4 +820,10 @@ Query parameters:
 			</div>
 		</div>
 	</body>
+	<script>
+		if(window.location.search.includes("startDialog=false")){
+			$("#dialog-overlay").hide()
+		}
+	</script>
 </html>
+

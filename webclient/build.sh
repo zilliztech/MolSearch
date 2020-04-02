@@ -45,8 +45,8 @@ fi
 if [[ $1 != "render" ]]
 	then
 
-	./node_modules/.bin/bower install
-	./node_modules/.bin/grunt
+	bower install
+	grunt
 
 fi
 

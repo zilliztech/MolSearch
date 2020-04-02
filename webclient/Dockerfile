@@ -1,34 +1,24 @@
-# => Build container
-FROM node:alpine as builder
+From ubuntu:18.04
+
 WORKDIR /app
-COPY package.json .
-RUN yarn
-COPY . .
-RUN yarn build
+COPY ./webclient /app
 
-# => Run container
-FROM nginx:1.17-alpine
+RUN apt-get -y install nginx && \
+  apt-get -y install php5.6 && \
+  apt-get -y install php5.6-cli && \
+  apt-get -y install php5.6-fpm && \
+  apt-get -y install inkscape && \
+  apt-get -y install imagemagick && \
+  apt-get -y install php-imagick && \
+  apt-get -y install nodejs && \
+  apt-get -y install npm && \
+  npm install -g bower && \
+  npm install -g grunt-cli && \
+  npm install grunt --save-dev && \
+  npm install grunt-contrib-clean grunt-contrib-uglify grunt-text-replace grunt-contrib-less grunt-svgmin grunt-contrib-copy grunt-contrib-watch
 
-# Nginx config
-RUN rm -rf /etc/nginx/conf.d
-COPY conf /etc/nginx
+RUN cd /app/webclient
+RUN ./build.sh fetch jmol
 
-# Static build
-COPY --from=builder /app/build /usr/share/nginx/html/
-
-# Default port exposure
-EXPOSE 80
-
-# Copy .env file and shell script to container
-WORKDIR /usr/share/nginx/html
-COPY ./env.sh .
-COPY .env .
-
-# Add bash
-RUN apk add --no-cache bash
-
-# Make our shell script executable
-RUN chmod +x env.sh
-
-# Start Nginx server
-CMD ["/bin/bash", "-c", "/usr/share/nginx/html/env.sh && nginx -g \"daemon off;\""]
+COPY ./example.com.conf /etc/nginx/conf.d/
+RUN nginx -s reload
