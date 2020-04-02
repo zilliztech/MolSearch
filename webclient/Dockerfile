@@ -1,7 +1,7 @@
 From ubuntu:18.04
 
 WORKDIR /app
-COPY ./webclient /app
+COPY . /app
 
 RUN apt-get -y install nginx && \
   apt-get -y install php5.6 && \
@@ -17,7 +17,7 @@ RUN apt-get -y install nginx && \
   npm install grunt --save-dev && \
   npm install grunt-contrib-clean grunt-contrib-uglify grunt-text-replace grunt-contrib-less grunt-svgmin grunt-contrib-copy grunt-contrib-watch
 
-RUN cd /app/webclient
+RUN cd /app
 RUN ./build.sh fetch jmol
 
 COPY ./example.com.conf /etc/nginx/conf.d/
