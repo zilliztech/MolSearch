@@ -2,7 +2,7 @@
 
 MolSearch 是基于 Milvus 研发的一款开源化合物分析软件，主要有五个功能：结构编辑，分子检索，工具类，3D模型展示，Jmol工具。
 
-![img](./pic/molsearch.PNG)
+![img](./pic/molsearch.png)
 
 ## 结构编辑
 
