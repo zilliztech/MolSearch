@@ -23,7 +23,15 @@ milvusdb/milvus:0.7.1-cpu-d040120-d2fad1
 
 ## 2. 向Milvus中导入数据
 
-## 启动 molsearch-webserver docker
+向Milvus中导入.smi数据，其中第一列是smiles，第二列是id号，形如：
+
+o1c(C(O)CNC(C)(C)C)cc2c1c(CC(=O)OC(C)(C)C)ccc2    10001
+
+```bash
+$ python insert_data.py -f <file_path>
+```
+
+## 3.启动 molsearch-webserver docker
 
 ```
 $ docker run -td -p 35001:5000 -e "MILVUS_HOST=192.168.1.25" -e "MILVUS_PORT=19530" zilliz/molsearch-webserver:0.1.0
@@ -37,7 +45,7 @@ $ docker run -td -p 35001:5000 -e "MILVUS_HOST=192.168.1.25" -e "MILVUS_PORT=195
 | -e "MILVUS_HOST=192.168.1.25" | -e 表示宿主机和 image 之间的系统参数映射 请修改`192.168.1.25`为启动 Milvus docker 的服务器 IP 地址 |
 | -e "MILVUS_PORT=19530"        | 请修改`19530`为启动 Milvus docker 的服务器端口号             |
 
-## 3. 启动 molsearch-webclient docker
+## 4. 启动 molsearch-webclient docker
 
 ```
 $ docker run -td -p 8001:80 -e API_URL=http://192.168.1.25:35001  zilliz/molsearch-webclient:0.1.0
