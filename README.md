@@ -1,6 +1,57 @@
 # MolSearch
 
-MolSearch 是基于 Milvus 研发的一款开源化合物分析软件，主要有五个功能：结构编辑，分子检索，工具类，3D模型展示，Jmol工具。
+# 系统搭建
+
+## 1. 启动 Milvus Docker
+
+本次实验使用 Milvus-0.7.1-CPU 版，安装启动方法参考https://milvus.io/cn/docs/v0.7.1/guides/get_started/install_milvus/cpu_milvus_docker.md。
+
+**注意：请使用以下命令启动 Milvus Docker**
+
+```
+# Start Milvus
+$ docker run -d --name milvus_cpu \
+-p 19530:19530 \
+-p 19121:19121 \
+-p 9091:9091 \
+-v /home/$USER/milvus/db:/var/lib/milvus/db \
+-v /home/$USER/milvus/conf:/var/lib/milvus/conf \
+-v /home/$USER/milvus/logs:/var/lib/milvus/logs \
+-v /home/$USER/milvus/wal:/var/lib/milvus/wal \
+milvusdb/milvus:0.7.1-cpu-d040120-d2fad1
+```
+
+## 2. 向Milvus中导入数据
+
+## 启动 molsearch-webserver docker
+
+```
+$ docker run -td -p 35001:5000 -e "MILVUS_HOST=192.168.1.25" -e "MILVUS_PORT=19530" zilliz/molsearch-webserver:0.1.0
+```
+
+上述启动命令相关参数说明：
+
+| 参数                          | 说明                                                         |
+| ----------------------------- | ------------------------------------------------------------ |
+| -p 35001:5000                 | -p 表示宿主机和 image 之间的端口映射                         |
+| -e "MILVUS_HOST=192.168.1.25" | -e 表示宿主机和 image 之间的系统参数映射 请修改`192.168.1.25`为启动 Milvus docker 的服务器 IP 地址 |
+| -e "MILVUS_PORT=19530"        | 请修改`19530`为启动 Milvus docker 的服务器端口号             |
+
+## 3. 启动 molsearch-webclient docker
+
+```
+$ docker run -td -p 8001:80 -e API_URL=http://192.168.1.25:35001  zilliz/molsearch-webclient:0.1.0
+```
+
+> 参数 -e API_URL=[http://192.168.1.25:35001](http://192.168.1.25:35001/) 与本节第二部分相对应，请修改`192.168.1.25`为启动 Milvus docker 的服务器 IP 地址。
+
+
+
+
+
+# 系统介绍
+
+MolSearch 是基于 Milvus 研发的一款开源化合物分析软件，主要有六个功能：结构编辑，化学式加载分子检索，工具类，3D模型展示，Jmol工具。
 
 ![img](./pic/molsearch.png)
 
@@ -42,6 +93,14 @@ MolSearch 是基于 Milvus 研发的一款开源化合物分析软件，主要�
 
 
 
+## 化学式加载
+
+ ![](./pic/load.png)
+
+可以输入smiles化学式或者药物名称，系统将加载对应的化学结构。
+
+
+
 ## 分子检索 - Search
 
 这一功能将实现在数据底库中的化学结构检索：
@@ -52,7 +111,7 @@ MolSearch 是基于 Milvus 研发的一款开源化合物分析软件，主要�
 
 - 超结构检索 - Superstructure：搜索以当前结构为超集的化合物。
 
-## 
+
 
 ## 工具类 - Tools
 
@@ -68,7 +127,7 @@ MolSearch 是基于 Milvus 研发的一款开源化合物分析软件，主要�
 
 可以显示分子结构式有关的基础信息。
 
-## 
+
 
 ## 3D 模型展示 - Model
 
