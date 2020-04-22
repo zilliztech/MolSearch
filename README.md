@@ -59,7 +59,7 @@ $ docker run -td -p 8001:80 -e API_URL=http://192.168.1.25:35001  zilliz/molsear
 
 # 系统介绍
 
-MolSearch 是基于 Milvus 研发的一款开源化合物分析软件，主要有六个功能：结构编辑，化学式加载分子检索，工具类，3D模型展示，Jmol工具。
+MolSearch 是基于 [Milvus](https://github.com/milvus-io/milvus)&[MolView](https://github.com/molview/legacy) 研发的一款开源化合物分析软件，主要有六个功能：结构编辑，化学式加载分子检索，工具类，3D模型展示，Jmol工具。
 
 ![img](./pic/molsearch.png)
 
