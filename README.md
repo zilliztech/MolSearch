@@ -36,7 +36,10 @@ milvusdb/milvus:0.8.0-cpu-d041520-464400
 o1c(C(O)CNC(C)(C)C)cc2c1c(CC(=O)OC(C)(C)C)ccc2    10001
 
 ```bash
+# 进入到 script 目录下执行以下命令
 $ python insert_data.py -f <file_path>
+# 可以使用当前目录下的test_1w.smi文件导入，如
+$ python insert_data.py -f <path>/MolSearch/script/test_1w.smi
 ```
 
 ## 3.启动 molsearch-webserver docker
