@@ -42,7 +42,7 @@ $ python insert_data.py -f <file_path>
 ## 3.启动 molsearch-webserver docker
 
 ```
-$ docker run -td -p 35001:5000 -e "MILVUS_HOST=192.168.1.25" -e "MILVUS_PORT=19530" zilliz/molsearch-webserver:0.1.0
+$ docker run -td -p 35001:5000 -e "MILVUS_HOST=192.168.1.85" -e "MILVUS_PORT=19530" -e "PG_HOST=192.168.1.85" -e "PG_PORT=5432" zilliz/molsearch-webserver:0.1.0
 ```
 
 上述启动命令相关参数说明：
@@ -56,7 +56,7 @@ $ docker run -td -p 35001:5000 -e "MILVUS_HOST=192.168.1.25" -e "MILVUS_PORT=195
 ## 4. 启动 molsearch-webclient docker
 
 ```
-$ docker run -td -p 8001:80 -e API_URL=http://192.168.1.25:35001  zilliz/molsearch-webclient:0.1.0
+$ docker run -td -p 8001:80 -e API_URL=http://192.168.1.85:35001  zilliz/molsearch-webclient:0.1.0
 ```
 
 > 参数 -e API_URL=[http://192.168.1.25:35001](http://192.168.1.25:35001/) 与本节第二部分相对应，请修改`192.168.1.25`为启动 Milvus docker 的服务器 IP 地址。

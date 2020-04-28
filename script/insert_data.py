@@ -57,7 +57,7 @@ def create_pg_table(conn, cur):
 
 def copy_data_to_pg(conn, cur, file_path):
     sql1 = "copy " + PG_TABLE_NAME + " from '" + file_path + "';"
-    sql2 = "create index ids on table " + PG_TABLE_NAME + "(ids);"
+    sql2 = "create index ids on " + PG_TABLE_NAME + "(ids);"
     print(sql1,sql2)
     try:
         cur.execute(sql1)
@@ -129,7 +129,7 @@ def do_load(file_path):
 
     conn = connect_postgres_server()
     cur = conn.cursor()
-    # create_pg_table(conn, cur)
+    create_pg_table(conn, cur)
     copy_data_to_pg(conn, cur, file_path)
     cur.close()
     conn.close()
