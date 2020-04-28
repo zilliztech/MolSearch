@@ -129,6 +129,8 @@ Query parameters:
 		<script type="text/javascript" src="build/molview-core.min.js"></script>
 		<script type="text/javascript" src="build/molview-molpad.min.js"></script>
 		<script type="text/javascript" src="build/molview-app.min.js"></script>
+		<script type="text/javascript" src="./env-config.js"></script>
+
 
 		<!-- PHP data injection -->
 		<script type="text/javascript">

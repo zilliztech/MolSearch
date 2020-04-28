@@ -91,7 +91,7 @@ $renderer = new Parsedown();
 		<div id="header">
 		<img id="logo" <?php echo 'src="'.$root.'img/logo.png"' ?> />
 		<a id="return-to-molview" <?php echo 'href="'.$root.'"' ?>>
-			<img id="mark" <?php echo 'src="'.$root.'img/mark.png"' ?> />
+			<img id="mark" <?php echo 'src="'.$root.'mark.png"' ?> />
 		</a>
 		</div>
 		<div id="content">

@@ -1,10 +1,18 @@
 # MolSearch
 
+# 前提环境
+
+- ### [安装 Milvus CPU 版](https://milvus.io/cn/docs/v0.8.0/guides/get_started/install_milvus/cpu_milvus_docker.md)
+
+- ### 安装 postgres
+
+
+
 # 系统搭建
 
 ## 1. 启动 Milvus Docker
 
-本次实验使用 Milvus-0.7.1-CPU 版，安装启动方法参考https://milvus.io/cn/docs/v0.7.1/guides/get_started/install_milvus/cpu_milvus_docker.md。
+本次实验使用 Milvus-0.8.0-CPU 版，安装启动方法参考https://milvus.io/cn/docs/v0.8.0/guides/get_started/install_milvus/cpu_milvus_docker.md。
 
 **注意：请使用以下命令启动 Milvus Docker**
 
@@ -18,10 +26,10 @@ $ docker run -d --name milvus_cpu \
 -v /home/$USER/milvus/conf:/var/lib/milvus/conf \
 -v /home/$USER/milvus/logs:/var/lib/milvus/logs \
 -v /home/$USER/milvus/wal:/var/lib/milvus/wal \
-milvusdb/milvus:0.7.1-cpu-d040120-d2fad1
+milvusdb/milvus:0.8.0-cpu-d041520-464400
 ```
 
-## 2. 向Milvus中导入数据
+## 2. 向 Milvus 中导入数据
 
 向Milvus中导入.smi数据，其中第一列是smiles，第二列是id号，形如：
 
