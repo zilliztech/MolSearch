@@ -51,7 +51,7 @@ $ docker run -td -p 35001:5000 -e "MILVUS_HOST=192.168.1.85" -e "MILVUS_PORT=195
 $ docker run -td -p 8001:80 -e API_URL=http://192.168.1.85:35001  zilliz/molsearch-webclient:0.1.0
 ```
 
-> 参数 -e API_URL=[http://192.168.1.25:35001](http://192.168.1.25:35001/) 与本节第二部分相对应，请修改`192.168.1.25`为启动 Milvus docker 的服务器 IP 地址。
+> 参数 -e API_URL=[http://192.168.1.85:35001](http://192.168.1.25:35001/) 与本节第二部分相对应，请修改`192.168.1.85`为启动 Milvus docker 的服务器 IP 地址。
 
 ## 4. 向 Milvus 中导入数据
 
