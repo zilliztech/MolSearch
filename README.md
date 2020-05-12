@@ -62,11 +62,12 @@ o1c(C(O)CNC(C)(C)C)cc2c1c(CC(=O)OC(C)(C)C)ccc2    10001
 ```bash
 # 进入到 script 目录下执行以下命令
 $ python insert_data.py -f <file_path>
-# 可以使用当前目录下的test_1w.smi文件导入，如
+# 可以使用当前目录下的test_1w.smi文件导入，下载数据并执行导入
+$ wget https://raw.githubusercontent.com/zilliztech/MolSearch/master/script/test_1w.smi
 $ python insert_data.py -f <path>/MolSearch/script/test_1w.smi
 ```
 
-
+> 本次实验数据来源：ftp://ftp.ncbi.nlm.nih.gov/pubchem/Compound/CURRENT-Full/SDF，提取了其中的一万条数据。
 
 # 系统介绍
 
