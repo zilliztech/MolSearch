@@ -2,9 +2,11 @@
 
 # 前提环境
 
-- ### [安装 Milvus CPU 版](https://milvus.io/cn/docs/v0.8.0/guides/get_started/install_milvus/cpu_milvus_docker.md)
+- ### [Milvus CPU 版](https://milvus.io/cn/docs/v0.8.0/guides/get_started/install_milvus/cpu_milvus_docker.md)
 
-- ### 安装 postgres
+- ### postgres
+
+- ### RDKit
 
 
 
@@ -29,20 +31,7 @@ $ docker run -d --name milvus_cpu \
 milvusdb/milvus:0.8.0-cpu-d041520-464400
 ```
 
-## 2. 向 Milvus 中导入数据
-
-向Milvus中导入.smi数据，其中第一列是smiles，第二列是id号，形如：
-
-o1c(C(O)CNC(C)(C)C)cc2c1c(CC(=O)OC(C)(C)C)ccc2    10001
-
-```bash
-# 进入到 script 目录下执行以下命令
-$ python insert_data.py -f <file_path>
-# 可以使用当前目录下的test_1w.smi文件导入，如
-$ python insert_data.py -f <path>/MolSearch/script/test_1w.smi
-```
-
-## 3.启动 molsearch-webserver docker
+## 2. 启动 molsearch-webserver docker
 
 ```
 $ docker run -td -p 35001:5000 -e "MILVUS_HOST=192.168.1.85" -e "MILVUS_PORT=19530" -e "PG_HOST=192.168.1.85" -e "PG_PORT=5432" zilliz/molsearch-webserver:0.1.0
@@ -56,7 +45,7 @@ $ docker run -td -p 35001:5000 -e "MILVUS_HOST=192.168.1.85" -e "MILVUS_PORT=195
 | -e "MILVUS_HOST=192.168.1.25" | -e 表示宿主机和 image 之间的系统参数映射 请修改`192.168.1.25`为启动 Milvus docker 的服务器 IP 地址 |
 | -e "MILVUS_PORT=19530"        | 请修改`19530`为启动 Milvus docker 的服务器端口号             |
 
-## 4. 启动 molsearch-webclient docker
+## 3. 启动 molsearch-webclient docker
 
 ```
 $ docker run -td -p 8001:80 -e API_URL=http://192.168.1.85:35001  zilliz/molsearch-webclient:0.1.0
@@ -64,7 +53,18 @@ $ docker run -td -p 8001:80 -e API_URL=http://192.168.1.85:35001  zilliz/molsear
 
 > 参数 -e API_URL=[http://192.168.1.25:35001](http://192.168.1.25:35001/) 与本节第二部分相对应，请修改`192.168.1.25`为启动 Milvus docker 的服务器 IP 地址。
 
+## 4. 向 Milvus 中导入数据
 
+向Milvus中导入.smi数据，其中第一列是smiles，第二列是id号，形如：
+
+o1c(C(O)CNC(C)(C)C)cc2c1c(CC(=O)OC(C)(C)C)ccc2    10001
+
+```bash
+# 进入到 script 目录下执行以下命令
+$ python insert_data.py -f <file_path>
+# 可以使用当前目录下的test_1w.smi文件导入，如
+$ python insert_data.py -f <path>/MolSearch/script/test_1w.smi
+```
 
 
 
