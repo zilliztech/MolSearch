@@ -67,7 +67,7 @@ $ wget https://raw.githubusercontent.com/zilliztech/MolSearch/master/script/test
 $ python insert_data.py -f <path>/MolSearch/script/test_1w.smi
 ```
 
-> 本次实验数据来源：ftp://ftp.ncbi.nlm.nih.gov/pubchem/Compound/CURRENT-Full/SDF，提取了其中的一万条数据。
+> 本次实验数据来源 [pubchem](ftp://ftp.ncbi.nlm.nih.gov/pubchem/Compound/CURRENT-Full/SDF) 和 [zinc](http://zinc.docking.org/tranches/home/) ，提取了其中的一万条数据。
 
 # 系统介绍
 
