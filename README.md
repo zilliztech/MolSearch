@@ -69,6 +69,13 @@ $ python insert_data.py -f <path>/MolSearch/script/test_1w.smi
 
 > 本次实验数据来源 [pubchem](ftp://ftp.ncbi.nlm.nih.gov/pubchem/Compound/CURRENT-Full/SDF) 和 [zinc](http://zinc.docking.org/tranches/home/) ，提取了其中的一万条数据。
 
+
+## 安装验证
+在浏览器中输入启动molsearch-webclient的IP和端口就可以访问服务了。
+```bash
+192.168.1.85:8001
+```
+
 # 系统介绍
 
 MolSearch 是基于 [Milvus](https://github.com/milvus-io/milvus)&[MolView](https://github.com/molview/legacy) 研发的一款开源化合物分析软件，主要有六个功能：结构编辑，化学式加载分子检索，工具类，3D模型展示，Jmol工具。
