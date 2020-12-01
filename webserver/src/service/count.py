@@ -2,7 +2,7 @@ import logging
 import time
 from common.config import DEFULT_TABLE
 from diskcache import Cache
-from indexer.index import milvus_client, count_table
+from indexer.index import milvus_client, count_collection
 
 
 def do_count(table_name):
