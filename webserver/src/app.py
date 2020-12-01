@@ -1,11 +1,10 @@
 import os
 import os.path as path
 import logging
-from common.config import SIM_TABLE,SUB_TABLE,SUPER_TABLE,NUM
+from common.config import DEFULT_TABLE, NUM
 from common.const import UPLOAD_PATH
 from service.search import do_search
 from service.count import do_count
-from indexer.index import milvus_client, create_table, insert_vectors, delete_table, search_vectors, create_index
 from flask_cors import CORS
 from flask import Flask, request, send_file, jsonify
 from flask_restful import reqparse
@@ -45,11 +44,11 @@ def do_search_api():
     cid_num = args['Cid']
 
     if search_type == 'similarity':
-        table_name = SIM_TABLE
+        metric = 'jaccard'
     elif search_type == 'substructure':
-        table_name = SUB_TABLE
+        metric = 'substructure'
     elif search_type == 'superstructure':
-        table_name = SUPER_TABLE
+        metric = 'superstructure'
     top_k = NUM
 
     if cid_num:
@@ -61,7 +60,7 @@ def do_search_api():
         return "no molecular"
     if molecular_name:
         try:
-            res_smi = do_search(table_name, molecular_name, top_k)
+            res_smi = do_search(DEFULT_TABLE, molecular_name, metric, top_k)
         except:
             return "There has no results, please input the correct molecular and ensure the table has data."
         re = {}

@@ -1,7 +1,7 @@
 import logging
 from common.const import default_cache_dir
 from common.config import PG_HOST, PG_PORT, PG_USER, PG_PASSWORD, PG_DATABASE, PG_TABLE
-from indexer.index import milvus_client, create_table, insert_vectors, delete_table, search_vectors, create_index
+from indexer.index import milvus_client, search_vectors
 from diskcache import Cache
 from encoder.encode import smiles_to_vec
 import psycopg2
@@ -26,13 +26,14 @@ def search_loc_in_pg(cur, ids, table_name=PG_TABLE):
         print("search faild!")
 
 
-def do_search(table_name, molecular_name, top_k):
+def do_search(table_name, molecular_name, metric,top_k):
     try:
         feats = []
         index_client = milvus_client()
         feat = smiles_to_vec(molecular_name)
         feats.append(feat)
-        status, vectors = search_vectors(index_client, table_name, feats, top_k)
+        # status, vectors = search_vectors(index_client, table_name, feats, top_k)
+        vectors = search_vectors(index_client, table_name, feats, metric, top_k)
         print(status)
         vids = [x.id for x in vectors[0]]
 
@@ -52,8 +53,6 @@ def do_search(table_name, molecular_name, top_k):
         logging.error(e)
         return "Fail with error {}".format(e)
     finally:
-        if index_client:
-            index_client.disconnect()
         if conn:
             cur.close()
             conn.close()
