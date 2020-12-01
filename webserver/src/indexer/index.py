@@ -1,6 +1,6 @@
 import logging
 from milvus import Milvus, DataType
-from audio.common.config import MILVUS_HOST, MILVUS_PORT
+from common.config import MILVUS_HOST, MILVUS_PORT
 
 
 def milvus_client():
