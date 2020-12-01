@@ -2,7 +2,6 @@ import os
 import os.path as path
 import logging
 from common.config import DEFULT_TABLE, NUM
-from common.const import UPLOAD_PATH
 from service.search import do_search
 from service.count import do_count
 from flask_cors import CORS
@@ -15,7 +14,6 @@ import time
 
 
 app = Flask(__name__)
-app.config['UPLOAD_FOLDER'] = UPLOAD_PATH
 app.config['JSON_SORT_KEYS'] = False
 CORS(app)
 
@@ -44,11 +42,11 @@ def do_search_api():
     cid_num = args['Cid']
 
     if search_type == 'similarity':
-        metric = 'jaccard'
+        metric = 'JACCARD'
     elif search_type == 'substructure':
-        metric = 'substructure'
+        metric = 'SUBSTRUCTURE'
     elif search_type == 'superstructure':
-        metric = 'superstructure'
+        metric = 'SUPERSTRUCTURE'
     top_k = NUM
 
     if cid_num:

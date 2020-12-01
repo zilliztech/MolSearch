@@ -1,5 +1,4 @@
 import logging
-from common.const import default_cache_dir
 from common.config import PG_HOST, PG_PORT, PG_USER, PG_PASSWORD, PG_DATABASE, PG_TABLE
 from indexer.index import milvus_client, search_vectors
 from diskcache import Cache
