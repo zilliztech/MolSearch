@@ -52,7 +52,7 @@ def do_search(table_name, molecular_name, metric,top_k):
                 break
             index = search_loc_in_pg(cur, i)
             res_smi.append(index)
-        print(res_smi)
+        # print(res_smi)
 
         return res_smi
 
