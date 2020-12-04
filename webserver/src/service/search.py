@@ -34,7 +34,7 @@ def do_search(table_name, molecular_name, metric, top_k):
         index_client = milvus_client()
         feat = smiles_to_vec(molecular_name)
         feats.append(feat)
-        # print(feats)
+        print(feats)
         time1 = time.time()
         vectors = search_vectors(index_client, table_name, feats, metric, top_k)
         time2 = time.time()
