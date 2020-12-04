@@ -32,9 +32,12 @@ def do_search(table_name, molecular_name, metric,top_k):
         feat = smiles_to_vec(molecular_name)
         feats.append(feat)
         # status, vectors = search_vectors(index_client, table_name, feats, top_k)
+        print(feats)
         vectors = search_vectors(index_client, table_name, feats, metric, top_k)
-        print(status)
+        print(vectors)
         vids = [x.id for x in vectors[0]]
+        print("-----------------", vids)
+
 
         conn = connect_postgres_server()
         cur = conn.cursor()
@@ -45,6 +48,7 @@ def do_search(table_name, molecular_name, metric,top_k):
                 break
             index = search_loc_in_pg(cur, i)
             res_smi.append(index)
+        print(res_smi)
 
         return res_smi
 
