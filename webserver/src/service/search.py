@@ -17,7 +17,7 @@ def connect_postgres_server():
 
 
 def search_loc_in_pg(cur, ids, table_name=PG_TABLE):
-    sql = "select smiles from " + table_name+ " where milvus_ids = '" + str(ids) + "';"
+    sql = "select smiles from " + table_name+ " where ids = '" + str(ids) + "';"
     # print(sql)
     try:
         
