@@ -2,7 +2,7 @@
 
 # 前提环境
 
-- ### [Milvus CPU 版](https://milvus.io/cn/docs/v0.8.0/guides/get_started/install_milvus/cpu_milvus_docker.md)
+- ### [Milvus CPU 版](https://milvus.io/docs/v0.10.4/milvus_docker-cpu.md)
 
 - ### postgres
 
@@ -14,27 +14,26 @@
 
 ## 1. 启动 Milvus Docker
 
-本次实验使用 Milvus-0.8.0-CPU 版，安装启动方法参考https://milvus.io/cn/docs/v0.8.0/guides/get_started/install_milvus/cpu_milvus_docker.md。
+本次实验使用 Milvus-0.10.4-CPU 版，安装启动方法参考https://milvus.io/docs/v0.10.4/milvus_docker-cpu.md。
 
 **注意：请使用以下命令启动 Milvus Docker**
 
 ```
 # Start Milvus
-$ docker run -d --name milvus_cpu \
+$ docker run -d --name milvus_cpu_0.10.4 \
 -p 19530:19530 \
 -p 19121:19121 \
--p 9091:9091 \
 -v /home/$USER/milvus/db:/var/lib/milvus/db \
 -v /home/$USER/milvus/conf:/var/lib/milvus/conf \
 -v /home/$USER/milvus/logs:/var/lib/milvus/logs \
 -v /home/$USER/milvus/wal:/var/lib/milvus/wal \
-milvusdb/milvus:0.8.0-cpu-d041520-464400
+milvusdb/milvus:0.10.4-cpu-d120220-e72454
 ```
 
 ## 2. 启动 molsearch-webserver docker
 
 ```
-$ docker run -td -p 35001:5000 -e "MILVUS_HOST=192.168.1.85" -e "MILVUS_PORT=19530" -e "PG_HOST=192.168.1.85" -e "PG_PORT=5432" zilliz/molsearch-webserver:0.1.0
+$ docker run -td -p 35001:5000 -e "MILVUS_HOST=192.168.1.85" -e "MILVUS_PORT=19530" -e "PG_HOST=192.168.1.85" -e "PG_PORT=5432" zilliz/molsearch-webserver:0.2.0
 ```
 
 上述启动命令相关参数说明：
@@ -64,7 +63,7 @@ o1c(C(O)CNC(C)(C)C)cc2c1c(CC(=O)OC(C)(C)C)ccc2    10001
 $ python insert_data.py -f <file_path>
 # 可以使用当前目录下的test_1w.smi文件导入，下载数据并执行导入
 $ wget https://raw.githubusercontent.com/zilliztech/MolSearch/master/script/test_1w.smi
-$ python insert_data.py -f <path>/MolSearch/script/test_1w.smi
+$ python insert_data.py -f test_1w.smi
 ```
 
 > 本次实验数据来源 [pubchem](ftp://ftp.ncbi.nlm.nih.gov/pubchem/Compound/CURRENT-Full/SDF) 和 [zinc](http://zinc.docking.org/tranches/home/) ，提取了其中的一万条数据。
