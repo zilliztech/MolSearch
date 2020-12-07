@@ -62,7 +62,7 @@ def search_vectors(client, table_name, vectors, metric, top_k):
     try:
         status, result = client.search(table_name, top_k, vectors, params={"metric_type": metric})
         print(status)
-        return res
+        return result
     except Exception as e:
         print("Milvus ERROR:", e)
         logging.error(e)
