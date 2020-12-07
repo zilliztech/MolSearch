@@ -15,23 +15,16 @@ from milvus import *
 SERVER_ADDR = "192.168.1.85"
 SERVER_PORT = 19530
 VECTOR_DIMENSION = 2048
-table_names = ['similarity_table', 'substructure_table', 'superstructure_table']
-metric_types = [MetricType.JACCARD, MetricType.SUBSTRUCTURE, MetricType.SUPERSTRUCTURE]
 
-PG_HOST = "192.168.1.85"
+
+PG_HOST = "127.0.0.1"
 PG_PORT = 5432
 PG_USER = "postgres"
 PG_PASSWORD = "postgres"
 PG_DATABASE = "postgres"
 PG_TABLE_NAME = "milvus"
 
-MILVUS = Milvus()
-
-def connect_milvus_server():
-    print("connect to milvus")
-    status = MILVUS.connect(host=SERVER_ADDR, port=SERVER_PORT, timeout=100)
-    print(status)
-    return status
+MILVUS = Milvus(host=SERVER_ADDR, port=SERVER_PORT, timeout=100)
 
 
 def connect_postgres_server():
@@ -68,6 +61,7 @@ def copy_data_to_pg(conn, cur, file_path):
     except:
         print("faild  copy!")
 
+
 def smiles_to_vec(smiles):
     mols = Chem.MolFromSmiles(smiles)
     # fp = AllChem.GetMorganFingerprintAsBitVect(mols, 2, VECTOR_DIMENSION)
@@ -102,30 +96,27 @@ def do_load(file_path):
     print("-----len of vectors:",len(vectors))
     connect_milvus_server()
 
-    num = 0
-    for table_name in table_names:
-        print(table_name, metric_types[num])
-        status, ok = MILVUS.has_collection(table_name)
-        if not ok:
-            param = {
-                'collection_name': table_name,
-                'dimension': VECTOR_DIMENSION,
-                'index_file_size': 512,  # optional
-                'metric_type': metric_types[num]  # optional
-            }
-            status = MILVUS.create_collection(param)
-            print(status)
-        num += 1
 
-        # status, ids = insert_vectors(index_client, table_name, vectors)
-        ids_lens = 0
-        while ids_lens<len(vectors) :
-            try:
-                status, ids = MILVUS.insert(collection_name=table_name, records=vectors[ids_lens:ids_lens+100000], ids = ids[ids_lens:ids_lens+100000])
-            except:
-                status, ids = MILVUS.insert(collection_name=table_name, records=vectors[ids_lens:len(vectors)], ids = ids[ids_lens:len(vectors)])
-            ids_lens += 100000
-            print(status, "ids:", len(ids))
+    if table_name not in MILVUS.list_collections():
+        collection_param = {
+        "fields": [
+            {"name": "embedding", "type": DataType.BINARY_VECTOR, "params": {"dim": VECTOR_DIMENSION}},
+        ],
+        "segment_row_limit": 800000,
+        "auto_id": True
+        }
+        status = MILVUS.create_collection(param)
+        print(status)
+
+
+    ids_lens = 0
+    while ids_lens<len(vectors) :
+        try:
+            status, ids = MILVUS.insert(collection_name=table_name, records=vectors[ids_lens:ids_lens+200000], ids = ids[ids_lens:ids_lens+200000])
+        except:
+            status, ids = MILVUS.insert(collection_name=table_name, records=vectors[ids_lens:len(vectors)], ids = ids[ids_lens:len(vectors)])
+        ids_lens += 200000
+        print(status, "ids:", len(ids))
 
     conn = connect_postgres_server()
     cur = conn.cursor()
