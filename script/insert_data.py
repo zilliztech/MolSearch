@@ -15,8 +15,7 @@ from milvus import *
 SERVER_ADDR = "192.168.1.85"
 SERVER_PORT = 19530
 VECTOR_DIMENSION = 2048
-table_names = molsearch
-metric_types = [MetricType.JACCARD, MetricType.SUBSTRUCTURE, MetricType.SUPERSTRUCTURE]
+table_name = "molsearch"
 
 PG_HOST = "192.168.1.85"
 PG_PORT = 5432
@@ -50,8 +49,8 @@ def create_pg_table(conn, cur):
 
 
 def copy_data_to_pg(conn, cur, file_path):
-    sql1 = "copy " + PG_TABLE_NAME + " from '" + file_path + "';"
-    sql2 = "create index ids on " + PG_TABLE_NAME + "(ids);"
+    sql1 = "copy " + PG_TABLE_NAME + " from '" + os.getcwd() + "/" +file_path + "';"
+    sql2 = "create index mols_ids on " + PG_TABLE_NAME + "(ids);"
     print(sql1,sql2)
     try:
         cur.execute(sql1)
