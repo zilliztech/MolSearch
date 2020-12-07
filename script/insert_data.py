@@ -15,7 +15,7 @@ from milvus import *
 SERVER_ADDR = "192.168.1.85"
 SERVER_PORT = 19530
 VECTOR_DIMENSION = 2048
-table_names = ['similarity_table', 'substructure_table', 'superstructure_table']
+table_names = molsearch
 metric_types = [MetricType.JACCARD, MetricType.SUBSTRUCTURE, MetricType.SUPERSTRUCTURE]
 
 PG_HOST = "192.168.1.85"
@@ -23,15 +23,9 @@ PG_PORT = 5432
 PG_USER = "postgres"
 PG_PASSWORD = "postgres"
 PG_DATABASE = "postgres"
-PG_TABLE_NAME = "milvus"
+PG_TABLE_NAME = "molsearch"
 
-MILVUS = Milvus()
-
-def connect_milvus_server():
-    print("connect to milvus")
-    status = MILVUS.connect(host=SERVER_ADDR, port=SERVER_PORT, timeout=100)
-    print(status)
-    return status
+MILVUS = Milvus(SERVER_ADDR, SERVER_PORT)
 
 
 def connect_postgres_server():
@@ -100,22 +94,19 @@ def feature_extract(filepath):
 def do_load(file_path):
     vectors, names, ids = feature_extract(file_path)
     print("-----len of vectors:",len(vectors))
-    connect_milvus_server()
+    # connect_milvus_server()
 
-    num = 0
-    for table_name in table_names:
-        print(table_name, metric_types[num])
-        status, ok = MILVUS.has_collection(table_name)
-        if not ok:
-            param = {
-                'collection_name': table_name,
-                'dimension': VECTOR_DIMENSION,
-                'index_file_size': 512,  # optional
-                'metric_type': metric_types[num]  # optional
-            }
-            status = MILVUS.create_collection(param)
-            print(status)
-        num += 1
+
+    status, ok = MILVUS.has_collection(table_name)
+    if not ok:
+        param = {
+            'collection_name': table_name,
+            'dimension': VECTOR_DIMENSION,
+            'index_file_size': 2048,  # optional
+            'metric_type': MetricType.JACCARD  # optional
+        }
+        status = MILVUS.create_collection(param)
+            
 
         # status, ids = insert_vectors(index_client, table_name, vectors)
         ids_lens = 0
@@ -150,7 +141,6 @@ def main(argv):
     for opt_name, opt_value in opts:
         if opt_name in ("-f", "--file"):
             file_path = opt_value
-            # connect_milvus_server()
             do_load(file_path)
         else:
             print("wrong parameter")
