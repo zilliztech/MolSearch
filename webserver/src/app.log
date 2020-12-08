@@ -1,0 +1,8 @@
+2020-12-07 18:14:29,683 - werkzeug - INFO -  * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+2020-12-07 18:15:05,039 - werkzeug - INFO - 172.16.80.5 - - [07/Dec/2020 18:15:05] "[37mGET /api/v1/search?Molecular=N1(C(=O)C2=C(N=CN2C)N(C)C1=O)C&Type=similarity HTTP/1.1[0m" 200 -
+2020-12-07 18:15:08,542 - werkzeug - INFO - 172.16.80.5 - - [07/Dec/2020 18:15:08] "[37mGET /api/v1/search?Molecular=N1(C(=O)C2=C(N=CN2C)N(C)C1=O)C&Type=substructure HTTP/1.1[0m" 200 -
+2020-12-07 18:15:11,727 - werkzeug - INFO - 172.16.80.5 - - [07/Dec/2020 18:15:11] "[37mGET /api/v1/search?Molecular=N1(C(=O)C2=C(N=CN2C)N(C)C1=O)C&Type=superstructure HTTP/1.1[0m" 200 -
+2020-12-07 18:18:15,480 - werkzeug - INFO - 172.16.80.5 - - [07/Dec/2020 18:18:15] "[37mGET /api/v1/search?Cid=121304016&Type=similarity HTTP/1.1[0m" 200 -
+2020-12-07 18:18:23,184 - werkzeug - INFO - 172.16.80.5 - - [07/Dec/2020 18:18:23] "[37mGET /api/v1/search?Cid=121304016&Type=substructure HTTP/1.1[0m" 200 -
+2020-12-07 18:18:28,240 - werkzeug - INFO - 172.16.80.5 - - [07/Dec/2020 18:18:28] "[37mGET /api/v1/search?Cid=121304016&Type=superstructure HTTP/1.1[0m" 200 -
+2020-12-07 18:18:45,535 - werkzeug - INFO - 172.16.80.5 - - [07/Dec/2020 18:18:45] "[37mGET /api/v1/search?Cid=121304016&Type=similarity HTTP/1.1[0m" 200 -
