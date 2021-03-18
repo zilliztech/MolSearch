@@ -1,22 +1,20 @@
 # MolSearch
 
-# 前提环境
+[English](README.md) | [中文版](CN_README.md)
 
-- ### [Milvus CPU 版](https://milvus.io/docs/v0.10.4/milvus_docker-cpu.md)
+# Requirements 
+
+- ### [Milvus CPU](https://milvus.io/docs/v0.10.4/milvus_docker-cpu.md)
 
 - ### postgres
 
 - ### RDKit
 
+# Deploy
 
+## 1. Run Milvus Docker
 
-# 系统搭建
-
-## 1. 启动 Milvus Docker
-
-本次实验使用 Milvus-0.10.4-CPU 版，安装启动方法参考https://milvus.io/docs/v0.10.4/milvus_docker-cpu.md。
-
-**注意：请使用以下命令启动 Milvus Docker**
+This demo uses Milvus-0.10.4-CPU，please refer to https://milvus.io/docs/v0.10.4/milvus_docker-cpu.md。
 
 ```
 # Start Milvus
@@ -30,168 +28,168 @@ $ docker run -d --name milvus_cpu_0.10.4 \
 milvusdb/milvus:0.10.4-cpu-d120220-e72454
 ```
 
-## 2. 启动 molsearch-webserver docker
+## 2. Run molsearch-webserver docker
 
 ```
 $ docker run -td -p 35001:5000 -e "MILVUS_HOST=192.168.1.85" -e "MILVUS_PORT=19530" -e "PG_HOST=192.168.1.85" -e "PG_PORT=5432" zilliz/molsearch-webserver:0.2.0
 ```
 
-上述启动命令相关参数说明：
+The description for parameters:
 
-| 参数                          | 说明                                                         |
+| Parameter                     | Description                                                  |
 | ----------------------------- | ------------------------------------------------------------ |
-| -p 35001:5000                 | -p 表示宿主机和 image 之间的端口映射                         |
-| -e "MILVUS_HOST=192.168.1.25" | -e 表示宿主机和 image 之间的系统参数映射 请修改`192.168.1.25`为启动 Milvus docker 的服务器 IP 地址 |
-| -e "MILVUS_PORT=19530"        | 请修改`19530`为启动 Milvus docker 的服务器端口号             |
+| -p 35001:5000                 | -p specifies pot mapping between the host and the image.     |
+| -e "MILVUS_HOST=192.168.1.85" | -e specifies the system parameter mapping between the host and the image. Pease update `192.168.1.25` to the IP address of the Milvus docker. |
+| -e "MILVUS_PORT=19530"        | Update `19530` to the port of Milvus docker.                 |
 
-## 3. 启动 molsearch-webclient docker
+## 3. Run molsearch-webclient docker
 
 ```
 $ docker run -td -p 8001:80 -e API_URL=http://192.168.1.85:35001  zilliz/molsearch-webclient:0.1.0
 ```
 
-> 参数 -e API_URL=[http://192.168.1.85:35001](http://192.168.1.25:35001/) 与本节第二部分相对应，请修改`192.168.1.85`为启动 Milvus docker 的服务器 IP 地址。
+> Note: Please update `192.168.1.85` to the IP address of the Milvus docker.
 
-## 4. 向 Milvus 中导入数据
+## 4. Import data to Milvus
 
-向Milvus中导入.smi数据，其中第一列是smiles，第二列是id号，形如：
+Import '.smi' data into Milvus, where the first column is smiles and the second column is the id number, for example:
 
 o1c(C(O)CNC(C)(C)C)cc2c1c(CC(=O)OC(C)(C)C)ccc2    10001
 
 ```bash
-# 进入到 script 目录下执行以下命令
-$ python insert_data.py -f <file_path>
-# 可以使用当前目录下的test_1w.smi文件导入，下载数据并执行导入
-$ wget https://raw.githubusercontent.com/zilliztech/MolSearch/master/script/test_1w.smi
+# Run the following command under the script directory
+$ cd script
 $ python insert_data.py -f test_1w.smi
 ```
 
-> 本次实验数据来源 [pubchem](ftp://ftp.ncbi.nlm.nih.gov/pubchem/Compound/CURRENT-Full/SDF) 和 [zinc](http://zinc.docking.org/tranches/home/) ，提取了其中的一万条数据。
+> The data is from  [pubchem](ftp://ftp.ncbi.nlm.nih.gov/pubchem/Compound/CURRENT-Full/SDF) and [zinc](http://zinc.docking.org/tranches/home/), which extracted 10,000 pieces of data.
 
+You can enter the IP and port where molsearch-webclient is launched in your browser.
 
-## 安装验证
-在浏览器中输入启动molsearch-webclient的IP和端口就可以访问服务了。
 ```bash
 192.168.1.85:8001
 ```
 
-# 系统介绍
+# How to use
 
-MolSearch 是基于 [Milvus](https://github.com/milvus-io/milvus)&[MolView](https://github.com/molview/legacy) 研发的一款开源化合物分析软件，主要有六个功能：结构编辑，化学式加载分子检索，工具类，3D模型展示，Jmol工具。
+MolSearch is an open source molecular search software based on [Milvus](https://github.com/milvus-io/milvus) and [MolView](https://github.com/molview/legacy), which has six main feature: editor, chemical formula, molecular search, tool classes, 3D model, Jmol tools.
 
 ![img](./pic/molsearch.png)
 
-## 结构编辑
+## Drawing structural formulas
 
-结构编辑包含了三部分的工具栏，可以在其中选择可使用的工具：
-
-### 顶部工具栏
+### Top toolbar
 
 ![img](./pic/draw1.png)            
 
-- 清除：清除整个画布的结构。
-- 橡皮擦：擦除原子，化学键或当前选择的结构。
-- 撤消/重做：撤消或重做最近的更改。
-- 选择工具：
-  - 拖动：可以使用鼠标左键移动整个化学结构。
-  - 矩形选择：使用矩形选择指定的原子和化学键区域。
-  - 套索选择：通过绘制不规则的区域来选择原子和化学键。
-- color：带颜色地显示原子和化学键。
-- skeleton：显示所有C和H原子，而不是只显示分子结构的骨架。
-- Center：将整个化学结构居中。
-- Clean structure：使用外部服务重整结构式。
-- to 3D：将化学结构式转换为3D模型。
+- **Trash:** clear the entire canvas
+- **Eraser:** erase atoms, bonds or the current selection
+- **Undo/redo:** undo or redo your recent changes
+- Selection tools: all these tool can be used to drag the current selection or individual atoms and bonds. You can add/remove atoms and bonds to the selection by clicking them. If you have selected a separate fragment, you can rotate it by dragging an atom in the selection. You can delete the selection using the **DEL** key or using the eraser tool. Each tool has different behavior for the right mouse button:
+  - **Drag:** move the entire molecule (you can already use the left mouse button for this)
+  - **Rectangle select:** select atoms and bonds using a rectangular selection area
+  - **Lasso select:** select atoms and bonds by drawing a freehand selection area
+- **Color mode:** display atoms and bonds using colors
+- **skeleton mode:** displays all C and H atoms instead of skeletal display
+- **Center:** centers the whole molecule
+- **Clean:** cleans the structural formula using an external service
+- **to 3D:** converts the structural formula into a 3D model
 
-### 左侧工具栏
+#### Left toolbar
 
 ![](./pic/draw2.png)             
 
-- 化学键：选择一种化学键类型，可以对化学结构进行添加或修改。
-- 官能团：选择官能团（苯，环丙烷等）。
-- 原子链：创建碳原子链。
-- 电荷：增加或减少原子的电荷。
+- **Bonds:** pick one of the bond types (single, double, triple, up, down) and add or modify bonds
+- **Fragments:** pick one of the fragments (benzene, cyclopropane, etc.) and add fragments
+- **Chain:** create a chain of carbon atoms
+- **Charge:** increment (+) or decrement (-) the charge of atoms
 
-### 右侧工具栏
+#### Right toolbar
 
 ![](./pic/draw3.png)
 
-在此工具栏中，您可以从众多元素中进行选择，也可以使用最后一个按钮从元素周期表中选择指定元素。
+In this toolbar you can select from a number of elements, you can also pick an element from the periodic table using the last button. You can use the element to create new atoms or modify existing atoms.
 
-
-
-## 化学式加载
+## Finding structures
 
  ![](./pic/load.png)
 
-可以输入smiles化学式或者药物名称，系统将加载对应的化学结构。
+You can load molecules, just type what you are looking for and a list of available molecules will appear.
 
+## Search
 
+These functions allow you to perform some advanced searches through the database using the structural formula from the sketcher.
 
-## 分子检索 - Search
+1. **Similarity search:** search for compounds with a similar structural formula
+2. **Substructure search:** search for compounds with the current structure as subset
+3. **Superstructure search:** search for compounds with the current structure as superset
 
-这一功能将实现在数据底库中的化学结构检索：
+## Tools
 
-- 相似性检索 - Similarity：搜索具有相似结构式的化合物。
+The **Tools** menu contains several utility functions which are listed below.
 
-- 子结构检索 - Substructure：搜索以当前结构为子集的化合物。
+- **Structural formula image:** sketcher snapshot (PNG with alpha channel)
+- **3D model image:** model snapshot (PNG)
+- **MOL file:** exports a MDL Molfile from the 3D model **(common molecules)**
 
-- 超结构检索 - Superstructure：搜索以当前结构为超集的化合物。
+#### Information card
 
+This collects and displays information about the structural formula.
 
+## 3D Model
 
-## 工具类 - Tools
+The **Model** menu contains some general functions for the 3D model.
 
-工具菜单包含下面列出几个实用功能：
+#### Reset
 
-### 导出 - EXPORT
+This function sets the model position, zoom and rotation back to default.
 
-- Structural formula image：导出绘制的化合物结构。
-- 3D model image：导出 3D 模型图片。
-- MOL file：从 3D 模型导出 MDL Molfile。
+#### Representation
 
-### 信息卡 - INFORMATION CARD
+You can choose from a list of different molecule representations including; ball and stick, stick, van der Waals spheres, wireframe and lines. Macromolecules are automatically drawn using ribbons.
 
-可以显示分子结构式有关的基础信息。
+#### Background
 
+You can switch between a black, gray or white background. The default background is black (exported images from GLmol or ChemDoodle have a transparent background)
 
+#### Engines
 
-## 3D 模型展示 - Model
+You can choose from three different render engines: **GLmol**, **Jmol** and **ChemDoodle**. GLmol is used as default render engine. GLmol and ChemDoodle are based on WebGL, a browser technology to support 3D graphics. If WebGL is not available in your browser, Jmol will be used for all rendering.
 
-Model 菜单包含了 3D 模型中一些常规的设置：
+MolSearch automatically switches to:
 
-- Reset：此功能将 3D 模型设置回默认值。
+1. **Jmol** if you execute functions from the Jmol menu
+2. **GLmol** if you load macromolecules (due to significant higher performance)
+3. **ChemDoodle** if you load a crystal structure (GLmol cannot render crystal structures)
 
-### 模型展示 - REPERSENTATION
+## Jmol tools
 
-您可以将分子表示为各种形式，包括球/棒状，棒状，范德华球，线框和线。
+The **Jmol** menu offers some awesome Jmol-only functions and calculations.
 
-### 背景 - BACKGROUND
+#### Clear
 
-您可以选择 3D 模型中的背景，默认背景为黑色。
+Clears all executed calculations and measurements.
 
-### 引擎选择 - ENGINE
+#### High Quality
 
-选择不同的渲染引擎：GLmol，Jmol 和 ChemDoodle。
+Enables High Quality rendering in Jmol (enabled by default on fast devices) When turned off, anti-aliasing is disabled and the model is drawn using lines while transforming it.
 
+#### Calculations
 
+You can perform the following Jmol calculations in Jmol:
 
-## Jmol 工具
+- **MEP surface lucent/opaque:** calculates and projects molecular analysis software electrostatic potential on a translucent or opaque van der Waals surface
+- **Charge:** calculates and projects atomic charge as text label and white to atom color gradient
+- **Bond dipoles:** calculates and draws individual bond dipoles
+- **Overall dipole:** calculates and draws net bond dipole
+- **Energy minimization:** executes an interactive MMFF94 energy minimization *(note that this function only executes a maximum of 100 minimization steps at a time)*
 
-此菜单下提供了对三维结构的简单分析与计算功能。
+#### Measurement
 
-- High Quality：在 Jmol 中启用高质量渲染。
-- Clean：清除当前执行的计算和测量。
+You can measure distance, angle and torsion using Jmol. You can activate and deactivate one of these measurement types via the Jmol menu.
 
-### 计算 - CALCULATIONS
+- **Distance** distance between two atoms in nm
+- **Angle** angle between two bonds in degrees
+- **Torsion** torsion between four atoms in degrees
 
-- MEP surface Iucent/opaque：在半透明或不透明的 3D 模型表面上计算和投影分子静电势。
-- Charge：计算和投影原子电荷。
-- Bond dipoles：计算并绘制单键偶极子。
-- Overall dipole：计算并绘制净键偶极子。
-- Energy minimization：执行 MMFF94 能量最小化。
-
-### 测量 - MEASUREMENT
-
-- Distance：两个原子之间的距离
-- Distance：两个原子之间的角度
-- Torsion：多个原子之间的扭转度
+Note that in some cases, the resolved 3D model is only an approach of the real molecule, this means you have to execute an **Energy minimization** in order to do reliable measurements.
