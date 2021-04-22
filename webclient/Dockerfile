@@ -22,6 +22,9 @@ RUN apt-get -y install imagemagick && \
   apt-get -y install nodejs && \
   apt-get -y install npm
 
+RUN npm install -g n && \
+  n stable
+
 WORKDIR /var/www/html
 COPY . /var/www/html
 
@@ -42,7 +45,7 @@ RUN echo '{ "allow_root": true }' > /root/.bowerrc
 RUN chmod a+x build.sh
 RUN ./build.sh fetch jmol
 
-# CMD ["/bin/bash", "-c", "/var/www/html/env.sh && /etc/init.d/php7.2-fpm start && nginx -t"]
+# CMD ["/bin/bash", "-c", " /etc/init.d/php7.2-fpm start && /etc/init.d/nginx start"]
 CMD ["/bin/bash", "-c", "/var/www/html/env.sh && /etc/init.d/php7.2-fpm start && /etc/init.d/nginx start"]
 
 # Expose ports.

@@ -1,10 +1,18 @@
-MolView
-=======
+# MolView
+
 This repository holds the code of MolView.org.
 It is not actively maintained due to lacking financial support.
 
-License
----
+## Running webclient dev
+
+0. use CMD ["/bin/bash", "-c", " /etc/init.d/php7.2-fpm start && /etc/init.d/nginx start"] in dockerfile.
+1. docker build -t molsearch .
+2. cd webclient
+3. docker run -td -p 8001:80 -e API_URL=http://192.168.1.85:35001 -v "$PWD":/var/www/html molsearch
+4. npx ./build.sh (build app)
+
+## License
+
 ```
 MolView (http://molview.org)
 Copyright (c) 2014, 2015 Herman Bergwerf
@@ -22,10 +30,11 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with MolView.  If not, see <http://www.gnu.org/licenses/>.
 ```
+
 See LICENSE.md for more details about third party code.
 
-Build
----
+## Build
+
 Instructions:
 
 1. Copy all files to a server with support for: PHP5, php5-curl, .htaccess and mod_rewrite
@@ -34,8 +43,8 @@ Instructions:
 4. Make sure the Inkscape and the ImageMagick CLI are installed
 5. Install npm and install local npm modules
 6. Run the build script (use `./build.sh fetch jmol` for a clean build)
-    - **Only run bower and grunt, and render images:** `./build.sh`
-    - **Also fetch external PHP sources:** `./build.sh fetch`
-    - **Also fetch Jmol from sourceforge:** `./build.sh fetch jmol`
-    - **Also fetch Jmol from stolaf.edu:** `./build.sh fetch jmol nightly`
-    - **Only render images:** `./build.sh render`
+   - **Only run bower and grunt, and render images:** `./build.sh`
+   - **Also fetch external PHP sources:** `./build.sh fetch`
+   - **Also fetch Jmol from sourceforge:** `./build.sh fetch jmol`
+   - **Also fetch Jmol from stolaf.edu:** `./build.sh fetch jmol nightly`
+   - **Only render images:** `./build.sh render`

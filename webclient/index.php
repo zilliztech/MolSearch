@@ -524,32 +524,7 @@ Query parameters:
 							<img src="img/arrow-right.svg">
 							<button class="btn close btn-large btn-primary" >ENTER</button>
 						</div>
-						<!-- <img id="welcome-mark" src="img/mark.svg" alt="MolView" />
-						<a id="agpl-logo-wrapper" target="_blank" href="http://github.com/molview">
-							<img id="agpl-logo" src="img/agpl.svg" alt="AGPL">
-						</a>
-						<div id="welcome-loading-msg">LOADING&hellip;</div>
-						<p>By closing this banner and using MolView, you agree with the Terms of Use!</p>
-                        <a class="gray" href="legal" target="_blank">read the Terms of Use</a>
-						<div id="welcome-button-bar" class="btn-group" style="display: none;">
-							<button class="btn close btn-large btn-primary">Close</button>
-						</div>
-						<p>We need your support to create more cool stuff! <a class="btn" target="_blank" title="Consider donating to this project" href="https://www.patreon.com/molview">Donate</a></p>
-						<p id="allow-tracking-wrapper">
-							<input id="allow-tracking" type="checkbox" />
-							<script type="text/javascript">
-								// Disable by default (GDPR)
-								$("#allow-tracking").prop("checked", Preferences.get("molview", "allow_tracking", false))
-							</script>
-							<label for="allow-tracking">Allow MolView to collect annonymous usage data (<a class="gray" href="tracking">details</a>)</label>
-						</p>
-						<div class="btn-group">
-							<a class="btn" target="_blank" title="YouTube Channel" href="https://www.youtube.com/channel/UCRP9nXCC59TMlqc-bk1mi3A">YouTube</a>
-							<a class="btn" target="_blank" title="@molview" href="https://twitter.com/molview">Twitter</a>
-							<a class="btn" target="_blank" title="Facebook page" href="https://www.facebook.com/molview">Facebook</a>
-							<a class="btn" target="_blank" title="+MolView" href="https://google.com/+MolViewOrganization/about" rel="publisher">Google+</a>
-							<a class="btn" target="_blank" title="MolView Blog" href="http://blog.molview.org">Blog</a>
-						</div> -->
+					
 					</div>
 					<div class="dialog" id="about-dialog" style="display: none;">
 						<h2>About</h2>
@@ -818,14 +793,88 @@ Query parameters:
 							<button class="btn close btn-primary">Close</button>
 						</div>
 					</div>
+					<div class="register-dialog" id="register-dialog" style="display: none; height:auto">
+						<h2 style="margin-top:0">Can’t wait to try Milvus out? </h2>
+						<p>Get started with Milvus source code:</p>
+						<a href="https://github.com/milvus-io/bootcamp" target="_blank" style="display:flex;color:#06aff2;margin: 20px 0">
+							<img src="img/github.svg">
+							<span style="margin-left:16px">Milvus Github</span>
+						</a>
+						<p>or join our community:</p>
+
+						<a href="https://milvusio.slack.com/?redir=%2Farchives%2FC01U7SWQD0C" target="_blank" style="display:flex;color:#06aff2;margin: 20px 0">
+							<img src="img/slack.svg">
+							<span style="margin-left:16px">Join Channel</span>
+						</a>
+						<!-- <form id="register-form">
+							<input class="register-input" id="first_name" type="text" placeholder="First Name"/>
+							<input class="register-input" id="last_name" type="text" placeholder="Last Name"/>
+							<input class="register-input" id="phone" type="text" 
+							placeholder="Your phone number"/>
+							<input class="register-input" id="company" type="text" placeholder="Company"/>
+							<input class="register-input" id="job" type="text" placeholder="Your job title"/>
+							
+							<div class="btn-wrapper">
+								<button id="register-submit" type="button">Submit</button>
+							</div>
+						</form> -->
+					</div>
 				</div>
 			</div>
 		</div>
 	</body>
 	<script>
-		if(window.location.search.includes("startDialog=false")){
+		// function getQueryVariable(variable){
+		// 	var query = window.location.search.substring(1);
+		// 	var vars = query.split("&");
+		// 	for (var i=0;i<vars.length;i++) {
+		// 					var pair = vars[i].split("=");
+		// 					if(pair[0] == variable){return pair[1];}
+		// 	}
+		// 	return false
+		// }
+
+		if(window.location.search.includes("s=false")){
 			$("#dialog-overlay").hide()
 		}
+
+		let timer = null 
+		timer = setInterval(() => {
+			// var flag = window.localStorage.getItem('registed')
+			// if(flag === 'true') {
+			// 	clearInterval(timer)
+			// 	return
+			// }
+			$('#start-dialog').hide()
+			$("#dialog-overlay").show()
+			$('#register-dialog').show()
+		}, 1000 * 30);
+	
+		// $("#register-submit").click(function(e){
+		// 	var firstName = $('#first_name').val()
+		// 	var lastName = $('#last_name').val()
+		// 	var company = $('#company').val()
+		// 	var phone = $('#phone').val()
+		// 	var job = $('#job').val()
+
+		// 	$.ajax({
+		// 		url: 'http://127.0.0.1:1337/demos/' + getQueryVariable('id'),
+  	// 		type: 'put',
+  	// 		data: {
+		// 			name: firstName + '.' + lastName,
+		// 			company,
+		// 			phone,
+		// 			job
+		// 		}
+		// 	}).then(function(res){
+		// 		if(res.id){
+		// 			window.localStorage.setItem('registed',true)
+		// 			$("#dialog-overlay").hide()
+		// 			$('#register-dialog').hide()
+		// 		}
+		// 	})
+		// })
+		
 	</script>
 </html>
 
