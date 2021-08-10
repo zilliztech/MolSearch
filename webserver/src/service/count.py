@@ -1,21 +1,18 @@
 import logging
 import time
-from common.config import SIM_TABLE
+from common.config import DEFULT_TABLE
 from diskcache import Cache
-from indexer.index import milvus_client, create_table, insert_vectors, delete_table, search_vectors, create_index, count_table
+from indexer.index import milvus_client, count_collection
 
 
 def do_count(table_name):
     if not table_name:
-        table_name = SIM_TABLE
+        table_name = DEFULT_TABLE
     try:
         index_client = milvus_client()
         print("get table rows:",table_name)
-        num = count_table(index_client, table_name=table_name)
+        num = count_collection(index_client, table_name)
         return num
     except Exception as e:
         logging.error(e)
         return "Error with {}".format(e)
-    finally:
-        if index_client:
-            index_client.disconnect()
