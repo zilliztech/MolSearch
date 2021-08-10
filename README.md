@@ -1,4 +1,6 @@
+**This repo will no longer be maintained, please visit https://github.com/milvus-io/bootcamp/tree/master/solutions/molecular_similarity_search.**
 # MolSearch
+
 
 [English](README.md) | [中文版](CN_README.md)
 
